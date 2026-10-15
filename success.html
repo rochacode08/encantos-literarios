@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Confirmação da assinatura do clube Encantos Literários.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#00050A">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Encantos Literários</title>
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem 1.25rem;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 15%, rgb(149 71 165 / 0.2), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgb(53 139 185 / 0.18), transparent 45%),
+        var(--shape-background);
+    }
+
+    .brand-logo {
+      height: 2.5rem;
+    }
+
+    .processing-container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--shape-base), rgb(0 15 31 / 0.85));
+      border: 1px solid var(--shape-stroke);
+      border-radius: 1.5rem;
+      box-shadow: 0 30px 60px rgb(0 0 0 / 0.45);
+      z-index: 10;
+      overflow: hidden;
+    }
+
+    .processing-container::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink-base), var(--blue-base));
+    }
+
+    /* Ícone de status: anel girando → check */
+    .status-icon {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 1.75rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .status-icon .ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent 0 25%, var(--pink-base), var(--blue-base));
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px));
+      animation: spin 1.1s linear infinite;
+    }
+
+    .status-icon .bunny {
+      width: 44px;
+      animation: float 2s ease-in-out infinite;
+    }
+
+    .status-icon .check {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink-base), var(--blue-base));
+      box-shadow: 0 0 0 8px rgb(149 71 165 / 0.15), 0 12px 30px rgb(149 71 165 / 0.4);
+      opacity: 0;
+      transform: scale(0.4);
+    }
+
+    .status-icon .check svg {
+      width: 44px;
+      height: 44px;
+      stroke-dasharray: 30;
+      stroke-dashoffset: 30;
+    }
+
+    .done .status-icon .ring,
+    .done .status-icon .bunny {
+      display: none;
+    }
+
+    .done .status-icon .check {
+      animation: pop 0.5s cubic-bezier(.2, 1.4, .4, 1) forwards;
+    }
+
+    .done .status-icon .check svg {
+      animation: draw 0.4s 0.25s ease-out forwards;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes pop {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    h1 {
+      font: var(--title-sm);
+      font-size: 1.625rem;
+      color: var(--text-title);
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-pill {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border: 1px solid rgb(229 181 64 / 0.45);
+      border-radius: 999px;
+      background: rgb(229 181 64 / 0.1);
+      font: var(--tag);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #f1d58f;
+    }
+
+    .status-text {
+      font: var(--body-md);
+      color: var(--text-label);
+      line-height: 1.6;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .progress-bar {
+      height: 6px;
+      margin: 2rem 0;
+      background: var(--shape-background);
+      border: 1px solid var(--shape-stroke);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--pink-base), var(--blue-base));
+      border-radius: 999px;
+      animation: fillProgress 3.5s ease-in-out forwards;
+    }
+
+    @keyframes fillProgress {
+      to {
+        width: 100%;
+      }
+    }
+
+    /* Etapas */
+    .steps {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .step {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 17px;
+      left: calc(50% + 24px);
+      right: calc(-50% + 24px);
+      height: 2px;
+      background: var(--shape-stroke);
+      transition: background-color 0.4s ease;
+    }
+
+    .step.completed:not(:last-child)::after {
+      background: var(--blue-base);
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--shape-background);
+      border: 2px solid var(--shape-stroke);
+      font: 700 0.875rem/1 var(--ff);
+      color: var(--text-label);
+      transition: all 0.4s ease;
+    }
+
+    .step.active .step-number {
+      background: var(--pink-base);
+      border-color: var(--pink-base);
+      color: var(--text-title);
+      box-shadow: 0 0 0 5px rgb(149 71 165 / 0.25);
+    }
+
+    .step.completed .step-number {
+      background: var(--blue-base);
+      border-color: var(--blue-base);
+      color: var(--text-title);
+    }
+
+    .step-label {
+      font: var(--tag);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-label);
+    }
+
+    .step.active .step-label {
+      color: var(--text-title);
+    }
+
+    .step.completed .step-label {
+      color: var(--blue-light);
+    }
+
+    /* Conteúdo exibido após confirmar */
+    .success-area {
+      display: none;
+      margin-top: 2rem;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .done .success-area {
+      display: block;
+    }
+
+    .plan-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border: 1px solid var(--shape-stroke);
+      border-radius: 0.875rem;
+      background: var(--shape-background);
+    }
+
+    .plan-summary small {
+      display: block;
+      font: var(--tag);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--pink-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .plan-summary strong {
+      font: var(--title-xs);
+      font-size: 1.0625rem;
+      color: var(--text-title);
+    }
+
+    .plan-summary .plan-price {
+      font: var(--body-md);
+      font-weight: 600;
+      color: var(--blue-light);
+      white-space: nowrap;
+    }
+
+    .btn-library {
+      display: block;
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(90deg, var(--pink-base), var(--pink-dark));
+      box-shadow: 0 8px 20px rgb(149 71 165 / 0.35);
+      font: var(--button);
+      font-size: 1rem;
+      color: var(--text-title);
+      text-decoration: none;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .btn-library:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .redirect-info {
+      margin-top: 1rem;
+      font: var(--body-sm);
+      color: var(--text-label);
+    }
+
+    .redirect-timer {
+      color: var(--pink-light);
+      font-weight: 700;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Celebração: ondas de brilho + estrelas da marca saindo do check */
+    .status-icon .ripple {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid var(--pink-light);
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .status-icon .ripple+.ripple {
+      border-color: var(--blue-light);
+    }
+
+    .done .status-icon .ripple {
+      animation: ripple 1.2s 0.15s ease-out forwards;
+    }
+
+    .done .status-icon .ripple+.ripple {
+      animation-delay: 0.4s;
+    }
+
+    /* Estrelas da marca no fundo, surgem quando a simulação termina */
+    .bg-stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .bg-stars img {
+      position: absolute;
+      width: var(--s);
+      opacity: 0;
+    }
+
+    body:has(.done) .bg-stars img {
+      animation:
+        star-in 0.8s var(--d) cubic-bezier(.2, 1.4, .4, 1) forwards,
+        twinkle 3s calc(var(--d) + 0.8s) ease-in-out infinite;
+    }
+
+    @keyframes ripple {
+      from {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: scale(1.9);
+      }
+    }
+
+    @keyframes star-in {
+      from {
+        opacity: 0;
+        transform: scale(0) rotate(-45deg);
+      }
+
+      to {
+        opacity: 0.8;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.8;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+      }
+    }
+
+    @media (width >=48em) {
+      .processing-container {
+        padding: 3rem 2.5rem 2.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-stars" aria-hidden="true">
+    <img src="assets/icons/star.svg" alt="" style="left: 8%; top: 12%; --s: 22px; --d: 0.1s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 18%; top: 30%; --s: 12px; --d: 0.35s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 6%; top: 55%; --s: 16px; --d: 0.55s">
+    <img src="assets/icons/star.svg" alt="" style="left: 14%; top: 78%; --s: 20px; --d: 0.25s">
+    <img src="assets/icons/star.svg" alt="" style="left: 26%; top: 90%; --s: 10px; --d: 0.7s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 90%; top: 10%; --s: 16px; --d: 0.2s">
+    <img src="assets/icons/star.svg" alt="" style="left: 80%; top: 26%; --s: 22px; --d: 0.45s">
+    <img src="assets/icons/star.svg" alt="" style="left: 93%; top: 48%; --s: 12px; --d: 0.65s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 84%; top: 70%; --s: 18px; --d: 0.15s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 72%; top: 88%; --s: 12px; --d: 0.5s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 36%; top: 6%; --s: 10px; --d: 0.6s">
+    <img src="assets/icons/star.svg" alt="" style="left: 62%; top: 5%; --s: 14px; --d: 0.3s">
+    <img src="assets/icons/blue-star.svg" alt="" style="left: 44%; top: 94%; --s: 14px; --d: 0.4s">
+    <img src="assets/icons/star.svg" alt="" style="left: 55%; top: 92%; --s: 10px; --d: 0.75s">
+  </div>
+  <a href="index.html">
+    <img class="brand-logo" src="assets/icons/logo-horizontal.svg" alt="Encantos Literários">
+  </a>
+
+  <div class="processing-container">
+    <div class="status-icon" aria-hidden="true">
+      <span class="ring"></span>
+      <img class="bunny" src="assets/icons/logo-symbol.svg" alt="">
+      <span class="ripple"></span>
+      <span class="ripple"></span>
+      <span class="check">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F8FBFB" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path d="M5 12.5l4.5 4.5L19 7.5" />
+        </svg>
+      </span>
+    </div>
+
+    <span class="demo-pill">Demonstração</span>
+    <h1 id="status-title">Simulando pagamento</h1>
+    <p class="status-text" id="status-text" aria-live="polite">
+      Esta é uma simulação: nenhuma cobrança real está sendo feita. Aguarde…
+    </p>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <ol class="steps">
+      <li class="step completed">
+        <span class="step-number">✓</span>
+        <span class="step-label">Validando</span>
+      </li>
+      <li class="step active">
+        <span class="step-number">2</span>
+        <span class="step-label">Verificando</span>
+      </li>
+      <li class="step">
+        <span class="step-number">3</span>
+        <span class="step-label">Confirmando</span>
+      </li>
+    </ol>
+
+    <div class="success-area">
+      <div class="plan-summary">
+        <div>
+          <small>Plano escolhido</small>
+          <strong id="plan-name">Plano Mensal</strong>
+        </div>
+        <span class="plan-price" id="plan-price">R$ 59,90 / mês</span>
+      </div>
+
+      <a class="btn-library" href="library.html">Ir para a biblioteca</a>
+      <p class="redirect-info">Redirecionando automaticamente em <span class="redirect-timer">5</span>s…</p>
+    </div>
+  </div>
+
+  <script src="js/plans.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/success.js"></script>
+</body>
+
+</html>
