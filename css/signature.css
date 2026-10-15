@@ -1,7 +1,7 @@
 /* Seção de planos.
    Celular e tablet: carrossel, um card por vez (indicadores criados em js/script.js).
    Desktop (64em+): os três cards em leque; Mensal e Anual saem de trás do Semestral
-   quando o JS adiciona .revealed. */
+   no hover (ou quando o JS adiciona .revealed: foco pelo teclado ou telas sem mouse). */
 
 .signature {
   margin-top: 88px;
@@ -365,8 +365,9 @@
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      /* Classe que será adicionada via JavaScript para revelar os cards */
-      &.revealed {
+      /* Abre no hover; .revealed vem do JS (teclado ou telas sem mouse) */
+      &.revealed,
+      &:hover {
         /* A partir do centro (metade do card + card inteiro): não sobrepõe em 1024px */
         & .monthly {
           opacity: 1;
@@ -484,11 +485,13 @@
     max-width: 300px;
   }
 
-  .signature .pricing.revealed .monthly {
+  .signature .pricing.revealed .monthly,
+  .signature .pricing:hover .monthly {
     left: calc(50% - 435px);
   }
 
-  .signature .pricing.revealed .annual {
+  .signature .pricing.revealed .annual,
+  .signature .pricing:hover .annual {
     right: calc(50% - 435px);
   }
 }

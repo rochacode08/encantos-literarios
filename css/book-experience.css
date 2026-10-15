@@ -1,7 +1,7 @@
 /* "Receba todo mês um livro surpresa..."
    Cada ícone fica dentro da sua palavra (<b class="kw">), então acompanha
    a palavra em qualquer largura de tela.
-   Abre no hover ou quando o JS marca .is-open (seção visível na tela). */
+   Abre no hover; .is-open vem do JS (teclado ou, em telas sem mouse, a seção visível na tela). */
 
 .book-experience {
   margin-top: 2rem;

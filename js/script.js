@@ -50,23 +50,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
-// Revela elementos que no desktop começam "fechados" (cards de plano e itens do kit).
-// Abre quando o mouse passa por cima, quando algo dentro recebe foco pelo
-// teclado ou quando a seção aparece bem na tela — assim ninguém fica sem ver.
+// Revela elementos que começam "fechados" (texto do livro surpresa, itens do kit e cards de plano).
+// Com mouse, a abertura é só pelo hover, feito no CSS (:hover). Sem mouse (celular e tablet)
+// não existe hover, então abre quando a seção aparece bem na tela.
+// Em ambos, o foco pelo teclado também abre, para ninguém ficar sem ver.
+const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
 function revealOnInteraction(element, className, visibleRatio) {
   if (!element) return;
 
   const reveal = () => {
     element.classList.add(className);
-    element.removeEventListener('mouseenter', reveal);
     element.removeEventListener('focusin', reveal);
     if (observer) observer.disconnect();
   };
 
-  element.addEventListener('mouseenter', reveal);
   element.addEventListener('focusin', reveal);
 
-  const observer = 'IntersectionObserver' in window
+  const observer = !canHover && 'IntersectionObserver' in window
     ? new IntersectionObserver(entries => {
         if (entries.some(entry => entry.intersectionRatio >= visibleRatio)) reveal();
       }, { threshold: visibleRatio })

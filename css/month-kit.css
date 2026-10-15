@@ -211,8 +211,9 @@
         top: 497px;
       }
 
-      /* Abre no hover ou quando o JS marca .is-open (seção visível na tela) */
-      &:hover,
+      /* Abre no hover de qualquer parte da seção (área maior que a caixa do kit);
+         .is-open vem do JS (teclado ou, em telas sem mouse, a seção visível na tela) */
+      .month-kit:hover &,
       &.is-open {
         & .kit-label,
         & .kit-arrow {
@@ -228,7 +229,7 @@
         }
       }
 
-      &:hover img[src*="assets/book."] {
+      .month-kit:hover & img[src*="assets/book."] {
         transform: scale(1.05);
       }
     }
