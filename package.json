@@ -1,0 +1,9 @@
+{
+  "name": "encantos-literarios",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Protótipo do site de assinatura de livros Encantos Literários",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
