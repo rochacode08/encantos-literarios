@@ -1,0 +1,112 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --pink-light: #C59DD2;
+  --pink-base: #9547A5;
+  --pink-dark: #7D298A;
+  --pink-low: #3F0F41;
+
+  --blue-light: #73B6D2;
+  --blue-base: #358BB9;
+  --blue-mid: #2374A4;
+  --blue-dark: #144A72;
+  --blue-low: #08233C;
+
+  --shape-stroke: #002347;
+  --shape-hover: #001933;
+  --shape-base: #000F1F;
+  --shape-background: #00050A;
+
+  --ff: "Raleway", sans-serif;
+
+  --text-title: #F8FBFB;
+  --text-body: #E2E7E9;
+  --text-label: #BAC6C9;
+
+  --title-lg: 700 3rem/normal var(--ff);
+  --title-md: 700 2.5rem/normal var(--ff);
+  --title-sm: 700 2rem/normal var(--ff);
+  --title-xs: 700 1rem/normal var(--ff);
+
+  --subtitle: 500 2rem/2.0 var(--ff);
+
+  --body-lg: 400 1.25rem/1.4 var(--ff);
+  --body-md: 400 1rem/1.4 var(--ff);
+  --body-sm: 400 0.875rem/1.4 var(--ff);
+  --body-xs: 400 0.75rem/1.4 var(--ff);
+
+  --button: 700 0.875rem/normal var(--ff);
+  --link: 500 0.875rem/normal var(--ff);
+  --tag: 700 0.625rem/normal var(--ff);
+
+  --px-lg: 1.25rem;
+
+  --pt-base: 1.25rem;
+  --section-gap: 6.5rem;
+}
+
+body {
+  font-family: var(--ff);
+  background-color: var(--shape-background);
+}
+
+/* Esconde visualmente, mas mantém para leitores de tela */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Foco visível para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--pink-light);
+  outline-offset: 3px;
+}
+
+.tag {
+  font: var(--tag);
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+@media (width >=48em) {
+  :root {
+    --pt-base: 3.5rem;
+    --section-gap: 14.75rem;
+  }
+}
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
