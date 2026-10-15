@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore o catálogo do clube, filtre por gênero e guarde seus livros favoritos.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#00050A">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Encantos Literários">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Biblioteca — Encantos Literários">
+  <meta property="og:description" content="Explore o catálogo do clube, filtre por gênero e guarde seus livros favoritos.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/utilitys.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/library.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Encantos Literários</title>
+</head>
+
+<body>
+  <section class="hero">
+    <div class="container">
+      <header class="pt-base">
+        <a href="index.html">
+          <picture>
+            <source srcset="assets/icons/logo-horizontal.svg" media="(min-width: 48em)">
+            <img src="assets/icons/logo-symbol.svg" alt="Encantos Literários — página inicial">
+          </picture>
+        </a>
+        <a class="sign" href="profile.html">Meu perfil</a>
+      </header>
+
+      <div class="text-hero">
+        <h1>Sua Biblioteca Mágica</h1>
+        <p>Explore livros cuidadosamente selecionados para despertar sua imaginação e expandir seus
+          horizontes literários</p>
+      </div>
+    </div>
+  </section>
+
+
+  <main>
+    <div class="text-hero library-hero-text">
+      <form class="search-container" role="search">
+        <label class="visually-hidden" for="search-input">Buscar livros</label>
+        <svg class="search-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <input type="search" id="search-input" placeholder="Busque por título, autor ou gênero" autocomplete="off">
+        <button type="button" id="search-clear" aria-label="Limpar busca">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <section class="filters-section">
+      <div class="container">
+        <div class="filters">
+          <h2 class="filters-title" id="filters-title">Filtrar por:</h2>
+          <div class="filter-buttons" role="group" aria-labelledby="filters-title">
+            <button type="button" class="filter-btn active" aria-pressed="true" data-category="todos">Todos</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="fantasia">Fantasia</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="romance">Romance</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="misterio">Mistério</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="ficcao">Ficção</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="biografia">Biografia</button>
+            <button type="button" class="filter-btn" aria-pressed="false" data-category="autoajuda">Autoajuda</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="books-grid">
+      <div class="container">
+        <div class="grid-header">
+          <h2>Catálogo de Livros</h2>
+          <div class="view-toggle">
+            <button type="button" class="view-btn active" data-view="grid" aria-pressed="true" aria-label="Ver em grade">⊞</button>
+            <button type="button" class="view-btn" data-view="list" aria-pressed="false" aria-label="Ver em lista">☰</button>
+          </div>
+        </div>
+
+        <div class="books-container" id="books-container" aria-live="polite">
+          <!-- Os livros serão inseridos aqui via JavaScript -->
+        </div>
+
+        <div class="load-more">
+          <button type="button" id="load-more-btn">Carregar Mais Livros</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="reading-stats">
+      <div class="container">
+        <h2>Sua Biblioteca em Números</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><img src="assets/icons/books.svg" alt=""></div>
+            <div class="stat-number" id="stat-catalog">18</div>
+            <div class="stat-label">Livros no Catálogo</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><img src="assets/icons/heart.svg" alt=""></div>
+            <div class="stat-number" id="stat-favorites">3</div>
+            <div class="stat-label">Seus Favoritos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><img src="assets/icons/bookmarks.svg" alt=""></div>
+            <div class="stat-number" id="stat-genres">6</div>
+            <div class="stat-label">Gêneros</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><img src="assets/icons/star.svg" alt=""></div>
+            <div class="stat-number" id="stat-average">4,6</div>
+            <div class="stat-label">Nota Média do Catálogo</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <div class="brand">
+        <img src="assets/icons/logo-horizontal.svg" alt="Encantos Literários">
+        <hr class="blue-line">
+
+        <div class="social">
+          <a aria-disabled="true" title="Instagram — em breve">
+            <img class="default" src="assets/icons/instagram.svg" alt="Instagram">
+            <img class="hover" src="assets/icons/instagram-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="X (Twitter) — em breve">
+            <img class="default" src="assets/icons/twitter.svg" alt="X (Twitter)">
+            <img class="hover" src="assets/icons/twitter-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="Facebook — em breve">
+            <img class="default" src="assets/icons/facebook.svg" alt="Facebook">
+            <img class="hover" src="assets/icons/facebook-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="Discord — em breve">
+            <img class="default" src="assets/icons/discord.svg" alt="Discord">
+            <img class="hover" src="assets/icons/discord-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="WhatsApp — em breve">
+            <img class="default" src="assets/icons/whatsapp.svg" alt="WhatsApp">
+            <img class="hover" src="assets/icons/whatsapp-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="E-mail — em breve">
+            <img class="default" src="assets/icons/mail.svg" alt="E-mail">
+            <img class="hover" src="assets/icons/mail-hover.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="infos">
+        <div>
+          <h2>Conteúdos</h2>
+          <p><a href="em-breve.html?pagina=kits-passados">Kits passados</a></p>
+          <p><a href="club.html">Clube de membros</a></p>
+          <p><a href="em-breve.html?pagina=blog">Blog</a></p>
+        </div>
+
+        <div>
+          <h2>Ajuda</h2>
+          <p><a href="em-breve.html?pagina=central-de-ajuda">Central de ajuda</a></p>
+          <p><a href="em-breve.html?pagina=regulamentos">Regulamentos</a></p>
+          <p><a href="em-breve.html?pagina=suporte">Suporte</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/covers.js"></script>
+  <script src="js/library.js"></script>
+</body>
+
+</html>
