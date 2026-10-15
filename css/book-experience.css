@@ -1,0 +1,140 @@
+/* "Receba todo mês um livro surpresa..."
+   Cada ícone fica dentro da sua palavra (<b class="kw">), então acompanha
+   a palavra em qualquer largura de tela.
+   Abre no hover ou quando o JS marca .is-open (seção visível na tela). */
+
+.book-experience {
+  margin-top: 2rem;
+
+  & .text-animation {
+    position: relative;
+    padding: 5.1rem 1.25rem;
+    text-align: center;
+
+    & p {
+      font: 400 1.125rem/1.7 var(--ff);
+      color: var(--text-body);
+      opacity: 0.3;
+      transition: opacity 0.5s ease-in-out;
+    }
+  }
+
+  /* Palavras destacadas */
+  & .kw {
+    font-weight: 600;
+    color: var(--text-body);
+    white-space: nowrap;
+    transition: color 0.5s ease-in-out;
+
+    & img {
+      display: inline-block;
+      width: 1.6em;
+      margin-left: 0.25em;
+      vertical-align: -0.35em;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+  }
+
+  & .kw--book img {
+    rotate: 10deg;
+  }
+
+  & .kw--gift img {
+    rotate: -40deg;
+    margin-left: 0.45em;
+  }
+
+  & .kw--magic img {
+    rotate: 15deg;
+  }
+
+  /* Sequência: cada palavra acende com o seu ícone */
+  & .kw--gift,
+  & .kw--gift img {
+    transition-delay: 0.7s;
+  }
+
+  & .kw--magic,
+  & .kw--magic img {
+    transition-delay: 1.4s;
+  }
+
+  &:hover,
+  &.is-open {
+    & .text-animation p {
+      opacity: 1;
+    }
+
+    & .kw {
+      color: var(--blue-light);
+
+      & img {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  /* Desktop: texto maior */
+  @media (width >=64em) {
+    margin-top: 6.12rem;
+    margin-bottom: 4.87rem;
+
+    & .text-animation {
+      padding: 7rem 5.62rem 7.5rem;
+
+      & p {
+        font: var(--subtitle);
+        max-width: 72rem;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  /* Telas largas: o texto cabe em 2 linhas como no Figma, então os ícones
+     ficam soltos em volta das palavras. Abaixo disso, ficam na linha. */
+  @media (width >=82em) {
+    & .kw {
+      position: relative;
+      font-weight: 400;
+
+      & img {
+        position: absolute;
+        margin: 0;
+        width: auto;
+      }
+    }
+
+    /* Livro de feitiço: acima do fim de "livro surpresa" */
+    & .kw--book img {
+      max-width: 5.5rem;
+      left: calc(100% - 2rem);
+      bottom: calc(100% + 0.5rem);
+      rotate: 0deg;
+    }
+
+    /* Prancheta: abaixo do começo de "brindes exclusivos" */
+    & .kw--gift img {
+      max-width: 4.5rem;
+      left: -1.5rem;
+      top: calc(100% + 0.75rem);
+      rotate: 10deg;
+    }
+
+    /* Bola de cristal: logo depois de "encantadora", um pouco abaixo */
+    & .kw--magic img {
+      max-width: 3.75rem;
+      left: calc(100% + 0.25rem);
+      top: calc(100% + 0.5rem);
+      rotate: -15deg;
+    }
+  }
+
+  @media (width >=96em) {
+    & .text-animation {
+      padding-inline: 8.6rem;
+    }
+  }
+}
