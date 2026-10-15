@@ -8,10 +8,7 @@ O projeto é composto por **7 páginas integradas** (início, pagamento, confirm
 
 ## 📸 Preview
 
-<!-- Adicione aqui um print ou gif do site. Ex: -->
-<!-- ![Preview do projeto](./assets/preview.png) -->
-
-> 💡 **Dica:** um GIF percorrendo o fluxo completo (plano → pagamento → biblioteca → perfil) mostra bem o tamanho do projeto.
+<!-- Vídeo do fluxo completo: ao editar no GitHub, arraste o .mp4 para esta linha -->
 
 ## 📊 Desempenho (Lighthouse)
 
@@ -37,9 +34,7 @@ Página inicial auditada com o Lighthouse do Chrome DevTools:
 
 ## 🚀 Demonstração
 
-🔗 [Acessar o site](#)
-
-> 💡 Clone o repositório e abra o `index.html` em um navegador moderno (recomendado: usar a extensão **Live Server** do VS Code).
+🔗 [Acessar o site](https://rochacode08.github.io/encantos-literarios/)
 
 ## 🛠️ Tecnologias utilizadas
 
