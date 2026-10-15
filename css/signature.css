@@ -1,0 +1,494 @@
+/* Seção de planos.
+   Celular e tablet: carrossel, um card por vez (indicadores criados em js/script.js).
+   Desktop (64em+): os três cards em leque; Mensal e Anual saem de trás do Semestral
+   quando o JS adiciona .revealed. */
+
+.signature {
+  margin-top: 88px;
+
+  & .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-body);
+    text-align: center;
+  }
+
+  & .pricing {
+    margin-top: 48px;
+    margin-inline: 20px;
+    position: relative;
+
+    /* Carrossel para mobile */
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 20px;
+    padding-inline: 1rem;
+    padding-bottom: 20px;
+
+    /* Esconder scrollbar mas manter funcionalidade */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Cada card ocupa a largura toda do carrossel */
+    & > div {
+      flex: 0 0 100%;
+    }
+
+    /* Estilos base para todos os cards */
+    & .monthly,
+    & .semi-annual,
+    & .annual {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.5rem;
+      padding: 2rem 2rem 28px;
+      min-width: 280px;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+
+      & img.star-deco--1 {
+        width: 26px;
+      }
+
+      & img.star-deco--2 {
+        width: 13.06px;
+      }
+
+      & img.star-deco--3 {
+        width: 23.2px;
+      }
+
+      & img.star-deco--4 {
+        width: 11.25px
+      }
+    }
+
+    /* Estilos tipográficos globais */
+    & .amount {
+      font: var(--title-md);
+      color: var(--text-title);
+    }
+
+    & h2 {
+      font: var(--title-xs);
+    }
+
+    & span {
+      font: var(--title-xs);
+      color: var(--text-title);
+    }
+
+    & p {
+      font: var(--body-sm);
+      color: var(--text-label);
+    }
+
+    & li {
+      font: var(--body-xs);
+      color: var(--text-body);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      white-space: nowrap;
+
+      & img {
+        flex-shrink: 0;
+        margin-right: 8px;
+        width: 14px;
+      }
+    }
+
+    /* Estilos compartilhados para header */
+    & header {
+      display: flex;
+      flex-direction: column;
+
+      & .price {
+        margin-top: 1.5rem;
+
+        & div {
+          display: flex;
+          align-items: baseline;
+        }
+
+        & p {
+          margin-top: 8px;
+        }
+      }
+    }
+
+    /* Estilos compartilhados para details */
+    & .details {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      & ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+      }
+
+      /* Estilos base para botões */
+      & button {
+        margin-top: 24px;
+        padding: 12px 0;
+        border-radius: 8px;
+        border: none;
+        font: var(--button);
+        color: var(--text-title);
+        width: 100%;
+        cursor: pointer;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 100%;
+          padding-top: 100%;
+          border-radius: 50%;
+          transform: translate(-50%, -50%) scale(0);
+          transition: transform .7s ease-out;
+          z-index: -1;
+        }
+
+        &:hover::before {
+          transform: translate(-50%, -50%) scale(3);
+        }
+
+        &:not(:hover)::before {
+          transform: translate(-50%, -50%) scale(0);
+        }
+      }
+    }
+
+    /* Card Mensal */
+    & .monthly {
+      background-color: var(--shape-base);
+      border: 2px solid var(--shape-stroke);
+
+      & header {
+        margin-bottom: 60px;
+      }
+
+      & h2 {
+        color: var(--blue-light);
+      }
+
+      & button {
+        background-color: var(--blue-dark);
+
+        &::before {
+          background-color: var(--blue-mid);
+        }
+      }
+    }
+
+    /* Card Semestral */
+    & .semi-annual {
+      background-color: var(--shape-hover);
+      position: relative;
+
+      & img[src="assets/icons/bunny.svg"] {
+        position: absolute;
+        top: -51px;
+      }
+
+      & header {
+        margin-bottom: 54px;
+
+        & .flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          & h2 {
+            color: var(--pink-light);
+          }
+
+          & span {
+            font: var(--tag);
+            padding: 9px 20px;
+            border-radius: 999px;
+            background-color: var(--shape-stroke);
+            text-transform: uppercase;
+          }
+        }
+      }
+
+      & button {
+        background-color: var(--pink-dark);
+
+        &::before {
+          background-color: var(--pink-base);
+        }
+      }
+    }
+
+    /* Card Anual */
+    & .annual {
+      background-color: var(--shape-base);
+      border: 2px solid var(--shape-stroke);
+      position: relative;
+
+      & header {
+        margin-bottom: 20px;
+      }
+
+      & img.star-deco-maior, & img.star-deco-menor {
+        position: absolute;
+        bottom: -6px;
+      }
+
+      & img.star-deco--3 {
+        right: -6px;
+      }
+
+      & img.star-deco--4 {
+        right: 26px;
+      }
+
+      & h2 {
+        color: var(--blue-light);
+      }
+
+      & button {
+        background-color: var(--blue-dark);
+
+        &::before {
+          background-color: var(--blue-mid);
+        }
+      }
+    }
+  }
+
+  /* Indicadores do carrossel */
+  & .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+
+    & .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--shape-stroke);
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+
+      &.active {
+        background-color: var(--blue-light);
+      }
+    }
+  }
+}
+
+/* Tablet: igual ao celular (um card por vez), só que com o carrossel um pouco mais largo e centralizado */
+@media (48em <= width < 64em) {
+  .signature .pricing {
+    max-width: 460px;
+    margin-inline: auto;
+  }
+}
+
+/* Desktop: cards em leque */
+@media (width >=64em) {
+  .signature {
+    margin-top: 277px;
+
+    & .section-title {
+      font: var(--title-sm);
+      color: var(--text-title);
+    }
+
+    & .pricing {
+      margin-top: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 500px;
+      width: 100%;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      gap: 0;
+      padding-inline: 100px;
+
+      /* Remove propriedades do carrossel mobile */
+      overflow: visible;
+      scroll-snap-type: none;
+
+      /* Ajustar tamanho dos cards para desktop */
+      & .monthly,
+      & .semi-annual,
+      & .annual {
+        flex: 0 0 auto;
+        min-width: 320px;
+        max-width: 320px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        will-change: transform, opacity;
+      }
+
+      /* Estado inicial - cards dentro do semestral */
+      & .monthly,
+      & .annual {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      & .semi-annual {
+        position: relative;
+        z-index: 3;
+        transform: scale(1);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* Classe que será adicionada via JavaScript para revelar os cards */
+      &.revealed {
+        /* A partir do centro (metade do card + card inteiro): não sobrepõe em 1024px */
+        & .monthly {
+          opacity: 1;
+          left: calc(50% - 480px);
+          top: 120px;
+          right: auto;
+          transform: rotate(-8deg) scale(1);
+          pointer-events: auto;
+          z-index: 2;
+        }
+
+        & .annual {
+          opacity: 1;
+          right: calc(50% - 480px);
+          left: auto;
+          top: 120px;
+          transform: rotate(8deg) scale(1);
+          pointer-events: auto;
+          z-index: 2;
+        }
+
+        & .semi-annual {
+          transform: scale(1.02);
+        }
+      }
+
+      /* Hover: o card sobe, ganha brilho e fica com o fundo destacado; os outros voltam ao fundo base */
+      & .monthly:hover {
+        transform: rotate(-8deg) translateY(-10px) scale(1.05);
+        z-index: 4;
+        background-color: var(--shape-hover);
+        box-shadow: 0 15px 50px rgba(53, 139, 185, 0.2);
+      }
+
+      & .annual:hover {
+        transform: rotate(8deg) translateY(-10px) scale(1.05);
+        z-index: 4;
+        background-color: var(--shape-hover);
+        box-shadow: 0 15px 50px rgba(53, 139, 185, 0.2);
+      }
+
+      & .semi-annual:hover {
+        transform: scale(1.05);
+        z-index: 5;
+        background-color: var(--shape-hover);
+      }
+
+      &:hover .semi-annual {
+        box-shadow: 0 15px 50px rgba(149, 71, 165, 0.2);
+      }
+
+      & .monthly:hover ~ .semi-annual,
+      & .monthly:hover ~ .annual,
+      & .semi-annual:hover ~ .annual,
+      &:has(.semi-annual:hover) .monthly,
+      &:has(.annual:hover) .monthly,
+      &:has(.annual:hover) .semi-annual {
+        background-color: var(--shape-base);
+      }
+
+      /* Estrelas decorativas fora dos cards (como no Figma) */
+      & .monthly img.star-deco-maior,
+      & .monthly img.star-deco-menor,
+      & .annual img.star-deco-maior,
+      & .annual img.star-deco-menor {
+        position: absolute;
+        pointer-events: none;
+        transition: rotate 0.4s ease;
+      }
+
+      /* Hover no card: as estrelas dão uma giradinha */
+      & .monthly:hover img.star-deco-maior,
+      & .monthly:hover img.star-deco-menor,
+      & .annual:hover img.star-deco-maior,
+      & .annual:hover img.star-deco-menor {
+        rotate: 45deg;
+      }
+
+      /* Mensal: canto superior esquerdo */
+      & .monthly img.star-deco--1 {
+        top: -22px;
+        left: -32px;
+      }
+
+      & .monthly img.star-deco--2 {
+        top: 14px;
+        left: -38px;
+      }
+
+      /* Anual: canto inferior direito */
+      & .annual img.star-deco--3 {
+        right: -40px;
+        bottom: -20px;
+      }
+
+      & .annual img.star-deco--4 {
+        right: 6px;
+        bottom: -22px;
+      }
+    }
+
+    /* Esconder indicadores do carrossel no desktop */
+    & .carousel-indicators {
+      display: none;
+    }
+  }
+}
+
+/* Desktop estreito (1024–1279px): cards um pouco menores e mais perto do centro para caber na tela */
+@media (64em <= width < 80em) {
+  .signature .pricing .monthly,
+  .signature .pricing .semi-annual,
+  .signature .pricing .annual {
+    min-width: 300px;
+    max-width: 300px;
+  }
+
+  .signature .pricing.revealed .monthly {
+    left: calc(50% - 435px);
+  }
+
+  .signature .pricing.revealed .annual {
+    right: calc(50% - 435px);
+  }
+}
