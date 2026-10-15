@@ -1,0 +1,16 @@
+.container {
+  --max-width: 22.18rem;
+  width: min(var(--max-width), 100% - var(--px-lg) * 2);
+  margin-inline: auto;
+}
+
+.pt-base {
+  padding-top: var(--pt-base);
+}
+
+@media (width >= 48em) {
+  .container {
+    --max-width: 70rem;
+  }
+}
+
