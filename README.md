@@ -8,7 +8,7 @@ O projeto é composto por **7 páginas integradas** (início, pagamento, confirm
 
 ## 📸 Preview
 
-<!-- Vídeo do fluxo completo: ao editar no GitHub, arraste o .mp4 para esta linha -->
+https://github.com/user-attachments/assets/3fbd3d6a-9022-4095-ab82-47ac4893a452
 
 ## 📊 Desempenho (Lighthouse)
 
