@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Finalize sua assinatura do clube Encantos Literários.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#00050A">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/payment.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Encantos Literários</title>
+</head>
+
+<body>
+  <header class="payment-header">
+    <div class="container">
+      <a href="index.html">
+        <picture>
+          <source srcset="assets/icons/logo-horizontal.svg" media="(min-width: 48em)">
+          <img src="assets/icons/logo-symbol.svg" alt="Encantos Literários — página inicial">
+        </picture>
+      </a>
+    </div>
+  </header>
+
+
+  <main class="payment-main">
+    <div class="container">
+      <ol class="checkout-steps">
+        <li class="done"><span>1</span>Plano</li>
+        <li class="current"><span>2</span>Pagamento</li>
+        <li><span>3</span>Confirmação</li>
+      </ol>
+
+      <h1>Finalizar Assinatura</h1>
+      <p class="payment-subtitle">Falta pouco para o seu próximo encanto chegar.</p>
+
+      <div class="demo-banner" role="note">
+        <strong>Ambiente de demonstração.</strong>
+        Nenhuma cobrança real é feita e nenhum dado de cartão é salvo. Não use um cartão verdadeiro.
+      </div>
+
+      <div class="payment-content">
+        <section class="payment-form" aria-labelledby="payment-form-title">
+          <h2 id="payment-form-title">Detalhes do Pagamento</h2>
+
+          <div class="card-preview" aria-hidden="true">
+            <div class="card-top">
+              <span class="card-chip"></span>
+              <img src="assets/icons/logo-symbol.svg" alt="">
+            </div>
+            <p class="card-number-display">•••• •••• •••• ••••</p>
+            <div class="card-bottom">
+              <div>
+                <small>Titular</small>
+                <span class="card-name-display">NOME COMPLETO</span>
+              </div>
+              <div>
+                <small>Validade</small>
+                <span class="card-expiry-display">MM/AA</span>
+              </div>
+            </div>
+          </div>
+
+          <form novalidate>
+            <div class="form-message" role="alert" aria-live="assertive"></div>
+
+            <div class="form-group">
+              <label for="card-number">Número do Cartão</label>
+              <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000"
+                inputmode="numeric" autocomplete="cc-number" maxlength="19" required>
+            </div>
+            <div class="form-group">
+              <label for="card-name">Nome no Cartão</label>
+              <input type="text" id="card-name" name="card-name" placeholder="Como impresso no cartão"
+                autocomplete="cc-name" maxlength="60" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiry-date">Validade</label>
+                <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/AA" inputmode="numeric"
+                  autocomplete="cc-exp" maxlength="5" required>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="password" id="cvv" name="cvv" placeholder="123" inputmode="numeric"
+                  autocomplete="cc-csc" maxlength="4" required>
+              </div>
+            </div>
+            <button type="submit" class="btn-submit">Simular pagamento</button>
+            <button type="button" class="btn-test-card">Preencher com cartão de teste</button>
+          </form>
+        </section>
+
+        <section class="order-summary" aria-labelledby="order-summary-title">
+          <h2 id="order-summary-title">Resumo do Pedido</h2>
+          <div class="selected-plan">
+            <span class="plan-label">Seu plano</span>
+            <h3 class="plan-name">Plano Mensal</h3>
+            <p class="plan-price">R$ 59,90 / mês</p>
+            <ul class="plan-features"></ul>
+          </div>
+          <p class="billing-info"></p>
+          <div class="total-price">
+            <span>Cobrança hoje</span>
+            <span class="total-value">R$ 59,90</span>
+          </div>
+          <a class="change-plan" href="index.html#signature">Trocar de plano</a>
+        </section>
+      </div>
+    </div>
+  </main>
+
+
+
+  <script src="js/plans.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/payment.js"></script>
+</body>
+
+</html>
