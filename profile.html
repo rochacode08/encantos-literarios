@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seus dados, sua assinatura e suas preferências de leitura.">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#00050A">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/utilitys.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/profile.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <title>Encantos Literários</title>
+</head>
+
+<body>
+  <section class="profile-hero">
+    <div class="container">
+      <header class="pt-base">
+        <a href="index.html">
+          <picture>
+            <source srcset="assets/icons/logo-horizontal.svg" media="(min-width: 48em)">
+            <img src="assets/icons/logo-symbol.svg" alt="Encantos Literários — página inicial">
+          </picture>
+        </a>
+        <nav class="profile-nav">
+          <a href="index.html">Início</a>
+          <a href="library.html">Biblioteca</a>
+          <button type="button" class="logout-btn">Sair</button>
+        </nav>
+      </header>
+    </div>
+  </section>
+
+  <section class="profile-content">
+    <div class="container">
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <img alt="Foto de perfil" id="avatar-img" hidden>
+          <span class="avatar-initials" id="avatar-initials" aria-hidden="true">MS</span>
+          <button type="button" class="change-avatar-btn" aria-label="Alterar foto de perfil" title="Alterar foto de perfil">
+            <img src="assets/icons/camera-plus.svg" alt="">
+          </button>
+        </div>
+        <div class="profile-info">
+          <h1 id="user-name">Maria Silva</h1>
+          <p class="member-since" id="member-since">Perfil de demonstração</p>
+          <div class="subscription-status">
+            <span class="tag" id="subscription-tag">Sem assinatura</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-banner" role="note">
+        <span><strong>Modo demonstração:</strong> seus dados ficam salvos apenas neste navegador.</span>
+        <button type="button" class="reset-demo-btn">Apagar dados salvos</button>
+      </div>
+
+      <div class="profile-sections">
+        <div class="section-tabs" role="tablist" aria-label="Seções do perfil">
+          <button type="button" class="tab-btn active" role="tab" id="tab-personal" aria-controls="personal-tab" aria-selected="true" data-tab="personal">Dados Pessoais</button>
+          <button type="button" class="tab-btn" role="tab" id="tab-subscription" aria-controls="subscription-tab" aria-selected="false" tabindex="-1" data-tab="subscription">Assinatura</button>
+          <button type="button" class="tab-btn" role="tab" id="tab-preferences" aria-controls="preferences-tab" aria-selected="false" tabindex="-1" data-tab="preferences">Preferências</button>
+          <button type="button" class="tab-btn" role="tab" id="tab-history" aria-controls="history-tab" aria-selected="false" tabindex="-1" data-tab="history">Histórico</button>
+        </div>
+
+        <div class="tab-content active" id="personal-tab" role="tabpanel" aria-labelledby="tab-personal">
+          <div class="form-section">
+            <h2>Informações Pessoais</h2>
+            <form class="profile-form" data-store="profile" novalidate>
+              <div class="form-message" role="alert" aria-live="assertive"></div>
+
+              <div class="form-group">
+                <label for="full-name">Nome Completo</label>
+                <input type="text" id="full-name" name="fullName" autocomplete="name" maxlength="80" required readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" autocomplete="email" maxlength="120" required readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" maxlength="15" placeholder="(00) 00000-0000" required readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="birth-date">Data de Nascimento</label>
+                <input type="date" id="birth-date" name="birthDate" autocomplete="bday" required readonly>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="edit-form-btn">
+                  <img src="assets/icons/edit.svg" alt=""> Editar dados
+                </button>
+                <button type="button" class="cancel-btn" hidden>Cancelar</button>
+                <button type="submit" class="save-btn" hidden>Salvar Alterações</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="address-section">
+            <h2>Endereço de Entrega</h2>
+            <form class="address-form" data-store="address" novalidate>
+              <div class="form-message" role="alert" aria-live="assertive"></div>
+
+              <div class="form-group">
+                <label for="cep">CEP</label>
+                <input type="text" id="cep" name="cep" autocomplete="postal-code" inputmode="numeric" maxlength="9" placeholder="00000-000" required readonly>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="street">Rua e número</label>
+                  <input type="text" id="street" name="street" autocomplete="address-line1" maxlength="120" required readonly>
+                </div>
+                <div class="form-group">
+                  <label for="complement">Complemento <span class="optional">(opcional)</span></label>
+                  <input type="text" id="complement" name="complement" autocomplete="address-line2" maxlength="60" readonly>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="neighborhood">Bairro</label>
+                  <input type="text" id="neighborhood" name="neighborhood" maxlength="60" required readonly>
+                </div>
+                <div class="form-group">
+                  <label for="city">Cidade</label>
+                  <input type="text" id="city" name="city" autocomplete="address-level2" maxlength="60" required readonly>
+                </div>
+                <div class="form-group">
+                  <label for="state">Estado</label>
+                  <input type="text" id="state" name="state" autocomplete="address-level1" maxlength="2" placeholder="UF" required readonly>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="edit-form-btn">
+                  <img src="assets/icons/edit.svg" alt=""> Editar endereço
+                </button>
+                <button type="button" class="cancel-btn" hidden>Cancelar</button>
+                <button type="submit" class="save-btn" hidden>Salvar Endereço</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="tab-content" id="subscription-tab" role="tabpanel" aria-labelledby="tab-subscription">
+          <div class="subscription-details">
+            <h2>Detalhes da Assinatura</h2>
+
+            <div class="no-subscription" hidden>
+              <p>Você ainda não tem uma assinatura. Escolha um plano para começar a receber seus kits.</p>
+              <a class="change-plan-btn" href="index.html#signature">Ver planos</a>
+            </div>
+
+            <div class="has-subscription" hidden>
+              <div class="current-plan">
+                <div class="plan-info">
+                  <h3 id="sub-plan-name">Plano</h3>
+                  <p class="plan-price" id="sub-plan-price"></p>
+                  <p class="plan-description" id="sub-billing"></p>
+                  <p class="plan-description" id="sub-status"></p>
+                </div>
+                <div class="plan-benefits">
+                  <ul id="sub-benefits"></ul>
+                </div>
+              </div>
+
+              <div class="subscription-actions">
+                <button type="button" class="change-plan-btn">Alterar Plano</button>
+                <button type="button" class="pause-subscription-btn">Pausar Assinatura</button>
+                <button type="button" class="cancel-subscription-btn">Cancelar Assinatura</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="payment-method has-subscription" hidden>
+            <h2>Método de Pagamento</h2>
+            <div class="current-payment">
+              <div class="card-info">
+                <img src="assets/icons/credit-card.svg" alt="">
+                <div>
+                  <p id="card-last4">Cartão final ----</p>
+                  <p id="card-expiry"></p>
+                </div>
+              </div>
+              <button type="button" class="change-payment-btn">Alterar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="preferences-tab" role="tabpanel" aria-labelledby="tab-preferences">
+          <div class="reading-preferences">
+            <h2>Preferências de Leitura</h2>
+            <p class="preferences-intro">Conte pra gente o que você ama ler e como prefere ser avisado.</p>
+            <div class="genre-selection">
+              <h3>Gêneros Favoritos</h3>
+              <p class="preferences-hint">Escolha quantos quiser — usamos isso para montar seus próximos kits.</p>
+              <div class="genre-tags">
+                <label class="genre-tag">
+                  <input type="checkbox" value="Fantasia" checked>
+                  <span>Fantasia</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Romance" checked>
+                  <span>Romance</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Mistério">
+                  <span>Mistério</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Ficção Científica" checked>
+                  <span>Ficção Científica</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Terror">
+                  <span>Terror</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Biografia">
+                  <span>Biografia</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="História">
+                  <span>História</span>
+                </label>
+                <label class="genre-tag">
+                  <input type="checkbox" value="Autoajuda">
+                  <span>Autoajuda</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="notification-preferences">
+              <h3>Notificações</h3>
+              <p class="preferences-hint">Ative apenas o que for útil para você.</p>
+              <div class="notification-options">
+                <label class="notification-item">
+                  <input type="checkbox" value="Novos livros disponíveis" checked>
+                  <span>Novos livros disponíveis</span>
+                </label>
+                <label class="notification-item">
+                  <input type="checkbox" value="Envio do kit mensal" checked>
+                  <span>Envio do kit mensal</span>
+                </label>
+                <label class="notification-item">
+                  <input type="checkbox" value="Promoções e ofertas especiais">
+                  <span>Promoções e ofertas especiais</span>
+                </label>
+                <label class="notification-item">
+                  <input type="checkbox" value="Atividades da comunidade" checked>
+                  <span>Atividades da comunidade</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="button" class="save-preferences-btn">Salvar Preferências</button>
+          </div>
+        </div>
+
+        <div class="tab-content" id="history-tab" role="tabpanel" aria-labelledby="tab-history">
+          <div class="reading-history">
+            <h2>Histórico de Leituras</h2>
+            <div class="history-stats">
+              <div class="stat-card">
+                <h3>12</h3>
+                <p>Livros Recebidos</p>
+              </div>
+              <div class="stat-card">
+                <h3>8</h3>
+                <p>Livros Lidos</p>
+              </div>
+              <div class="stat-card">
+                <h3 id="ratings-count">2</h3>
+                <p>Avaliações Feitas</p>
+              </div>
+            </div>
+
+            <div class="books-history">
+              <div class="book-item" data-book="vento">
+                <div class="history-cover"></div>
+                <div class="book-details">
+                  <h4>O Nome do Vento</h4>
+                  <p>Patrick Rothfuss</p>
+                  <p class="received-date">Recebido em Janeiro 2024</p>
+                  <div class="book-status read">Lido</div>
+                </div>
+                <div class="book-rating"></div>
+              </div>
+
+              <div class="book-item" data-book="selecao">
+                <div class="history-cover"></div>
+                <div class="book-details">
+                  <h4>A Seleção</h4>
+                  <p>Kiera Cass</p>
+                  <p class="received-date">Recebido em Fevereiro 2024</p>
+                  <div class="book-status read">Lido</div>
+                </div>
+                <div class="book-rating"></div>
+              </div>
+
+              <div class="book-item" data-book="duna">
+                <div class="history-cover"></div>
+                <div class="book-details">
+                  <h4>Duna</h4>
+                  <p>Frank Herbert</p>
+                  <p class="received-date">Recebido em Março 2024</p>
+                  <div class="book-status reading">Lendo</div>
+                </div>
+                <div class="book-rating"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="links">
+      <div class="brand">
+        <img src="assets/icons/logo-horizontal.svg" alt="Encantos Literários">
+        <hr class="blue-line">
+
+        <div class="social">
+          <a aria-disabled="true" title="Instagram — em breve">
+            <img class="default" src="assets/icons/instagram.svg" alt="Instagram">
+            <img class="hover" src="assets/icons/instagram-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="X (Twitter) — em breve">
+            <img class="default" src="assets/icons/twitter.svg" alt="X (Twitter)">
+            <img class="hover" src="assets/icons/twitter-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="Facebook — em breve">
+            <img class="default" src="assets/icons/facebook.svg" alt="Facebook">
+            <img class="hover" src="assets/icons/facebook-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="Discord — em breve">
+            <img class="default" src="assets/icons/discord.svg" alt="Discord">
+            <img class="hover" src="assets/icons/discord-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="WhatsApp — em breve">
+            <img class="default" src="assets/icons/whatsapp.svg" alt="WhatsApp">
+            <img class="hover" src="assets/icons/whatsapp-hover.svg" alt="">
+          </a>
+
+          <a aria-disabled="true" title="E-mail — em breve">
+            <img class="default" src="assets/icons/mail.svg" alt="E-mail">
+            <img class="hover" src="assets/icons/mail-hover.svg" alt="">
+          </a>
+        </div>
+      </div>
+
+      <div class="infos">
+        <div>
+          <h2>Conteúdos</h2>
+          <p><a href="em-breve.html?pagina=kits-passados">Kits passados</a></p>
+          <p><a href="club.html">Clube de membros</a></p>
+          <p><a href="em-breve.html?pagina=blog">Blog</a></p>
+        </div>
+
+        <div>
+          <h2>Ajuda</h2>
+          <p><a href="em-breve.html?pagina=central-de-ajuda">Central de ajuda</a></p>
+          <p><a href="em-breve.html?pagina=regulamentos">Regulamentos</a></p>
+          <p><a href="em-breve.html?pagina=suporte">Suporte</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/plans.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/covers.js"></script>
+  <script src="js/profile.js"></script>
+</body>
+
+</html>
